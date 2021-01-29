@@ -1,35 +1,28 @@
 * 2017-03-6 21:00, Yu-jian Kang
 
-Here is a temporary package of CPC2.
-
+Here is a temporary package of CPC2. This package has been completely ported to Python3 and necessitates the C/C++
+toolchain for being installed properly.
 
 1) Pre-requisite:
 
 a. Biopython package: a local version could be downloaded from
 http://biopython.org/wiki/Download
 
+b. GCC toolchain. On e.g. Ubuntu, do
+sudo apt install build-essential
+
 2) Install
 
-a. Unpack the tarball:
+python setup.py bdist_wheel && pip install dist/*whl
 
-tom@linux$ gzip -dc CPC2-beta.tar.gz | tar xf -
-
-b. Build third-part packages: 
-
-tom@linux$ cd CPC2-beta
-tom@linux$ export CPC_HOME="$PWD"
-tom@linux$ cd libs/libsvm
-tom@linux$ gzip -dc libsvm-3.18.tar.gz | tar xf -
-tom@linux$ cd libsvm-3.18
-tom@linux$ make clean && make
+will suffice.
 
 3) Run the predict
 
-tom@linux$ cd $CPC_HOME
-tom@linux$ bin/CPC2.py -i (input_seq) -o (result_in_table)
+$ CPC2 -i (input_seq) -o (result_in_table)
 
 example:
-tom@linux$ bin/CPC2.py -i data/example.fa -o example_output
+$ CPC2 -i data/example.fa -o example_output
 
 4) Output result
 
